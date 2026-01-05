@@ -6,7 +6,7 @@ import (
 	"github.com/blueberry-adii/momentum/internal/enums/frequency"
 )
 
-type Habits struct {
+type Habit struct {
 	ID          int
 	UserID      int
 	Name        string

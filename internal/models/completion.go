@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type Completions struct {
+type Completion struct {
 	ID          int
 	HabitID     int
 	UserID      int
