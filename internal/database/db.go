@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -12,13 +13,17 @@ import (
 var DB *sql.DB
 
 func Connect() {
-	username := "root"
-	pass := "pass"
-	host := "localhost"
-	port := "3306"
-	dbname := "momentum"
+	user := os.Getenv("DB_USER")
+	pass := os.Getenv("DB_PASS")
+	host := os.Getenv("DB_HOST")
+	port := os.Getenv("DB_PORT")
+	dbname := os.Getenv("DB_NAME")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", username, pass, host, port, dbname)
+	if user == "" || pass == "" || host == "" || port == "" || dbname == "" {
+		log.Fatal("Missing!!! required environment variables")
+	}
+
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", user, pass, host, port, dbname)
 	var err error
 
 	DB, err = sql.Open("mysql", dsn)
