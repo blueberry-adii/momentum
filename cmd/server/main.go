@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/blueberry-adii/momentum/internal/database"
@@ -12,5 +13,5 @@ func main() {
 	mux := http.NewServeMux()
 	database.Connect()
 
-	http.ListenAndServe(":8080", mux)
+	log.Fatal(http.ListenAndServe(":8080", mux))
 }
