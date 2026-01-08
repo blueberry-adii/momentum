@@ -58,6 +58,11 @@ func CreateHabit(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetHabitByID(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
+
 	path := strings.Split(r.URL.Path, "/")
 
 	if len(path) < 3 {
@@ -75,6 +80,11 @@ func GetHabitByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteHabitByID(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodDelete {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
+
 	path := strings.Split(r.URL.Path, "/")
 
 	if len(path) < 3 {
