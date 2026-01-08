@@ -73,3 +73,18 @@ func GetHabitByID(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(Response{Status: http.StatusOK, Data: habit, Message: "Fetched Habit successfully", Success: true})
 }
+
+func DeleteHabitByID(w http.ResponseWriter, r *http.Request) {
+	path := strings.Split(r.URL.Path, "/")
+
+	if len(path) < 3 {
+		http.Error(w, "Invalid Path", http.StatusNotFound)
+		return
+	}
+
+	HabitID := path[2]
+
+	// TODO: Delete Habit in the database
+
+	w.WriteHeader(http.StatusOK)
+}
